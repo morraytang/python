@@ -9,15 +9,17 @@ class SimpleNet(nn.Module):
         # self.layer2 = nn.Linear(h1_dim,h2_dim)
         # self.layer3 = nn.Linear(h2_dim,out_dim)
         self.layer1 = nn.Sequential(
-            nn.Linear(in_dim,h1_dim),
+            nn.Linear(in_dim, h1_dim),
+            nn.BatchNorm1d(h1_dim),
             nn.ReLU(True)
         )
         self.layer2 = nn.Sequential(
-            nn.Linear(h1_dim,h2_dim),
+            nn.Linear(h1_dim, h2_dim),
+            nn.BatchNorm1d(h2_dim),
             nn.ReLU(True)
         )
         self.layer3 = nn.Sequential(
-            nn.Linear(h2_dim,out_dim),
+            nn.Linear(h2_dim, out_dim),
         )
 
     def forward(self, x):
